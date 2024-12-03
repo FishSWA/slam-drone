@@ -1,0 +1,10 @@
+<launch>
+
+    <!-- <include file="$(find vins)/launch/vins_rviz.launch"/> -->
+    <node pkg="nav_main" type="sensor_node" name="sensor_node" />
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch"/>
+    <node pkg="vins" type="vins_node" name="vins_node" args="/root/catkin_ws/src/VINS-Fusion/config/euroc/d430_mono_imu.yaml" />
+    <!-- <node pkg="loop_fusion" type="loop_fusion_node" name="loop_fusion_node" args="/root/catkin_ws/src/VINS-Fusion/config/euroc/d430_mono_imu.yaml" /> -->
+
+
+</launch>

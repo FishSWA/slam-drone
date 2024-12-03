@@ -1,0 +1,21 @@
+<launch>
+    <!-- 启动 VINS Rviz -->
+    <!-- <node pkg="vins" type="roslaunch" name="vins_rviz" launch-prefix="bash -c" output="screen">
+        <param name="cmd" value="roslaunch vins vins_rviz.launch"/> -->
+    <!-- </node> -->
+
+    <!-- 启动 VINS 节点 -->
+    <node pkg="vins" type="vins_node" name="vins_estimator" output="screen" args="/root/catkin_ws/src/VINS-Fusion/config/euroc/d430_mono_imu.yaml" />
+
+    <!-- 启动 Loop Fusion 节点 -->
+    <!-- <node pkg="loop_fusion" type="loop_fusion_node" name="loop_fusion_node" output="screen" args="/root/catkin_ws/src/VINS-Fusion/config/euroc/stereo_config_D430.yaml" /> -->
+    
+    <!-- 启动 rviz 节点 -->
+    <node name="rvizvisualisation" pkg="rviz" type="rviz" output="screen" args="-d $(find vins)/../config/vins_rviz_config.rviz" />
+    
+    <!-- 启动 imu数据接收 节点 -->
+    <node pkg="nav_main" type="sensor_node" name="sensor_node" output="screen" />
+
+    <!-- 启动 realsense 节点 -->
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+</launch>
