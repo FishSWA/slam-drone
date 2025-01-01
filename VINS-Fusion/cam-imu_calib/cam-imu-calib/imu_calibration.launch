@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="imu_utils" type="imu_an" name="imu_an" output="screen">
+        <!--IMU的话题-->
+        <param name="imu_topic" type="string" value= "/mavros/imu/data_raw"/>
+        <!--这个和最后保存的文件名有关，最后的文件名为D435i_imu_param.yaml-->
+        <param name="imu_name" type="string" value= "H7MINI"/>
+        <!--标定结果存放的文件目录-->
+        <param name="data_save_path" type="string" value= "/home/fish/cam-imu-calib/data/"/>
+        <!--修改标定时间，单位是分钟，需要根据数据包的时长来调整-->
+        <param name="max_time_min" type="int" value= "2"/>
+        <param name="max_cluster" type="int" value= "100"/>
+    </node>
+</launch>
