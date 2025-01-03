@@ -478,12 +478,12 @@ int main(int argc, char **argv)
         load_flag = 1;
     }
 
-    ros::Subscriber sub_vio = n.subscribe("/vins_estimator/odometry", 2000, vio_callback);
-    ros::Subscriber sub_image = n.subscribe(IMAGE_TOPIC, 2000, image_callback);
-    ros::Subscriber sub_pose = n.subscribe("/vins_estimator/keyframe_pose", 2000, pose_callback);
-    ros::Subscriber sub_extrinsic = n.subscribe("/vins_estimator/extrinsic", 2000, extrinsic_callback);
-    ros::Subscriber sub_point = n.subscribe("/vins_estimator/keyframe_point", 2000, point_callback);
-    ros::Subscriber sub_margin_point = n.subscribe("/vins_estimator/margin_cloud", 2000, margin_point_callback);
+    ros::Subscriber sub_vio = n.subscribe("/run_subscribe_msckf/odomimu", 2000, vio_callback);                  // /run_subscribe_msckf/odomimu ? , /vins_estimator/odometry
+    ros::Subscriber sub_image = n.subscribe(IMAGE_TOPIC, 2000, image_callback);                             
+    ros::Subscriber sub_pose = n.subscribe("/run_subscribe_msckf/loop_pose", 2000, pose_callback);           // /run_subscribe_msckf/loop_pose ?, /vins_estimator/keyframe_pose
+    ros::Subscriber sub_extrinsic = n.subscribe("/run_subscribe_msckf/loop_extrinsic", 2000, extrinsic_callback);     // /run_subscribe_msckf/loop_extrinsic ?, /vins_estimator/extrinsic
+    ros::Subscriber sub_point = n.subscribe("/run_subscribe_msckf/points_msckf", 2000, point_callback);        // /run_subscribe_msckf/points_msckf ?, /vins_estimator/keyframe_point
+    ros::Subscriber sub_margin_point = n.subscribe("/run_subscribe_msckf/points_slam", 2000, margin_point_callback);    // /run_subscribe_msckf/points_slam ?, /vins_estimator/margin_cloud
 
     pub_match_img = n.advertise<sensor_msgs::Image>("match_image", 1000);
     pub_camera_pose_visual = n.advertise<visualization_msgs::MarkerArray>("camera_pose_visual", 1000);
